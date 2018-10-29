@@ -1,12 +1,22 @@
 class Atm
     attr_accessor :funds
+    require 'date'
+    
     def initialize
         @funds = 1000
     end
-<<<<<<< HEAD
-=======
-    def withdraw(amount)
-        @funds -= amount
-    end
->>>>>>> adfe4ea9f6588e04b687409530e2a7b757176e99
+
+    def withdraw(amount, account)
+        case
+        when amount > account.balance
+    
+        return
+        else
+          
+          @funds -= amount
+          account.balance = account.balance - amount
+          { status: true, message: 'success', date: Date.today, amount: amount }
+        end
+      end
+
 end

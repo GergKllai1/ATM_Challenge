@@ -6,3 +6,10 @@ As a User <br>
 In order to make a withdrawal <br>
 The ATM needs to have funds <br>
  
+ As a User               <br>
+In order to know if my withdrawal was successful or unsuccessful   <br>            
+I want to receive a message with my withdrawal details<br>
+
+As a ATM operator <br>          
+In order ensure that an Acccount holder can only withdraw funds that he has balance for  <br>         
+I want to allow a withdrawal only if there are sufficient funds in the account<br>
