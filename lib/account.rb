@@ -1,11 +1,11 @@
 class Account
-    attr_accessor
+    attr_accessor :pin_code, :balance, :account_status, :exp_date, :account_name
 
-    def initialize(pin_code, balance, account_status, exp_date)
-        @pin_code = pin_code
-        @balance = balance
-        @account_status = account_status
-        @exp_date = exp_date
+    def initialize()
+        @pin_code = rand(1000..9999)
+        @balance = []
+        @account_status = []
+        @exp_date = []
         @account_name = {}
     end
 end
