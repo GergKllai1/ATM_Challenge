@@ -19,4 +19,17 @@ class Person
         @account = Account.new(owner: self)
     end
 
+    def deposit(amount)
+        @account == nil ? missing_account : deposit_funds(amount)
+    end
+
+    def missing_account
+        raise RuntimeError, 'No account present'
+    end
+
+    def deposit_funds(amount)
+        @cash -= amount
+        @account.balance += amount
+    end
+
 end
