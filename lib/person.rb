@@ -48,4 +48,8 @@ class Person
     def increase_cash(response)
         @cash += response[:amount]
     end
+
+    def missing_atm
+        raise RuntimeError, 'An ATM is required'
+    end
 end
