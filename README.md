@@ -34,3 +34,8 @@ I want to allow withdrawals from only active accounts <br>
 As a Bank Customer <br>
 In order to withdraw funds in even amounts <br>
 I want to recieve funds in 5, 10, & 20 dollar bills <br>
+
+As an ATM operator <br>
+In order to keep track of our customers <br>
+We want to assign each account to a separate person <br>
+
