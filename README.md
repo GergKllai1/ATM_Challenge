@@ -39,3 +39,8 @@ As an ATM operator <br>
 In order to keep track of our customers <br>
 We want to assign each account to a separate person <br>
 
+As a Person <br>
+In order to be able to use banking services to manage my funds <br>
+I would like to be able to create a bank account <br>
+
+
