@@ -38,6 +38,7 @@ describe Person do
        let(:atm) { Atm.new }
        before { subject.create_account }
        it 'can deposit funds' do
+        subject.cash = 150
         expect(subject.deposit(100)).to be_truthy
        end
 
@@ -87,5 +88,9 @@ describe Person do
         subject.job = {}
         expect{subject.create_account}.to raise_error(RuntimeError, 'You cannot create an account at us without a job sorry')
     end
-    
+
+    it 'expect to have cash to deposit' do
+        subject.create_account
+        expect{subject.deposit(50)}.to raise_error(RuntimeError, 'You have no cash to deposit')
+    end
 end

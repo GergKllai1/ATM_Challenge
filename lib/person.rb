@@ -36,8 +36,12 @@ class Person
     end
 
     def deposit_funds(amount)
-        @cash -= amount
-        @account.balance += amount
+        if @cash > 0 && @cash >= amount
+            @cash -= amount
+            @account.balance += amount
+        else
+            raise RuntimeError, 'You have no cash to deposit'
+        end
     end
 
     def withdraw(args = {})

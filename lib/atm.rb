@@ -45,7 +45,6 @@ class Atm
       bills
       end
 
-
       def insufficient_funds_in_atm?(amount)
         @funds < amount
       end
