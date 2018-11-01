@@ -69,5 +69,10 @@ describe Person do
         end
     end
 
+    it 'expect getting job to land you sweet job' do
+        subject.getting_a_job('Junior Frontend Developper', 25)
+        expect(subject.job).to eq ({position: 'Junior Frontend Developper', hourly_wage: 25})
+    end
+
     
 end

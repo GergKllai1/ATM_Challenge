@@ -2,11 +2,12 @@ require './lib/account.rb'
 require './lib/atm.rb'
 
 class Person
-    attr_accessor :name, :cash, :account
+    attr_accessor :name, :cash, :account, :job
     def initialize(attrs ={})
         @name ={}
         @cash = 0
         @account = nil
+        @job = {}
         set_name(attrs[:name])
     end
 
@@ -55,4 +56,9 @@ class Person
     def missing_atm
         raise RuntimeError, 'An ATM is required'
     end
+
+    def getting_a_job(position,hourly_wage)
+        @job = {position: position, hourly_wage: hourly_wage}        
+    end
+    
 end
