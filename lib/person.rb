@@ -60,5 +60,8 @@ class Person
     def getting_a_job(position,hourly_wage)
         @job = {position: position, hourly_wage: hourly_wage}        
     end
-    
+
+    def working(hours)
+        @cash += @job[:hourly_wage] * hours
+    end
 end
