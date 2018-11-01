@@ -35,6 +35,22 @@ class Person
         raise RuntimeError, 'No account present'
     end
 
+    def increase_cash(response)
+        @cash += response[:amount]
+    end
+
+    def missing_atm
+        raise RuntimeError, 'An ATM is required'
+    end
+
+    def getting_a_job(position,hourly_wage)
+        @job = {position: position, hourly_wage: hourly_wage}        
+    end
+
+    def working(hours)
+        @cash += @job[:hourly_wage] * hours
+    end
+
     def deposit_funds(amount)
         if @cash > 0 && @cash >= amount
             @cash -= amount
@@ -55,21 +71,5 @@ class Person
         pin = args[:pin]
         response = atm.withdraw(amount, pin, account)
         response[:status] == true ? increase_cash(response) : response
-    end
-
-    def increase_cash(response)
-        @cash += response[:amount]
-    end
-
-    def missing_atm
-        raise RuntimeError, 'An ATM is required'
-    end
-
-    def getting_a_job(position,hourly_wage)
-        @job = {position: position, hourly_wage: hourly_wage}        
-    end
-
-    def working(hours)
-        @cash += @job[:hourly_wage] * hours
     end
 end

@@ -23,6 +23,17 @@ describe Person do
         expect(subject.account).to be nil
     end
 
+    it 'expect getting a job method to get a job' do
+        subject.getting_a_job('Junior Frontend Developer', 25)
+        expect(subject.job).to eq ({position: 'Junior Frontend Developer', hourly_wage: 25})
+    end
+
+    it 'expect cash to increase when working' do
+        subject.job = {position: 'Junior Frontend Developer', hourly_wage: 25}
+        subject.working(40)
+        expect(subject.cash).to eq 1000
+    end
+
     describe 'can create an Account' do
         before {subject.create_account}
         it 'of Account class' do
@@ -32,11 +43,21 @@ describe Person do
         it 'with himself as an owner' do
             expect(subject.account.owner).to be subject
         end
+
+        it 'expect to raise error when trying to create an account without a job' do
+            subject.job = {}
+            expect{subject.create_account}.to raise_error(RuntimeError, 'You cannot create an account at us without a job sorry')
+        end
     end
 
     describe 'can manage funds if account been created' do
        let(:atm) { Atm.new }
        before { subject.create_account }
+
+       it 'expect to have cash to deposit' do
+        expect{subject.deposit(50)}.to raise_error(RuntimeError, 'You have no cash to deposit')
+       end
+
        it 'can deposit funds' do
         subject.cash = 150
         expect(subject.deposit(100)).to be_truthy
@@ -71,26 +92,5 @@ describe Person do
         it 'can\'t deposit funds' do
             expect {subject.deposit(100)}.to raise_error(RuntimeError, 'No account present')
         end
-    end
-
-    it 'expect getting job to land you sweet job' do
-        subject.getting_a_job('Junior Frontend Developer', 25)
-        expect(subject.job).to eq ({position: 'Junior Frontend Developer', hourly_wage: 25})
-    end
-
-    it 'expect cash to increase when working' do
-        subject.job = {position: 'Junior Frontend Developer', hourly_wage: 25}
-        subject.working(40)
-        expect(subject.cash).to eq 1000
-    end
-
-    it 'expect to raise error when trying to create an account without a job' do
-        subject.job = {}
-        expect{subject.create_account}.to raise_error(RuntimeError, 'You cannot create an account at us without a job sorry')
-    end
-
-    it 'expect to have cash to deposit' do
-        subject.create_account
-        expect{subject.deposit(50)}.to raise_error(RuntimeError, 'You have no cash to deposit')
     end
 end
