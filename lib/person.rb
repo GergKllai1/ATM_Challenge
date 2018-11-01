@@ -20,7 +20,11 @@ class Person
     end
 
     def create_account
-        @account = Account.new(owner: self)
+        @job == {} ? create_account_error : @account = Account.new(owner: self)
+    end
+
+    def create_account_error
+        raise RuntimeError, 'You cannot create an account at us without a job sorry'
     end
 
     def deposit(amount)

@@ -4,6 +4,9 @@ require './lib/atm'
 describe Person do
 
     subject {described_class.new(name: 'Thomas')}
+    before do
+        subject.getting_a_job('Junior Frontend Developer', 25)
+    end
 
     it 'is expected to have a :name on initialize' do
         expect(subject.name).not_to be nil
@@ -78,6 +81,11 @@ describe Person do
         subject.job = {position: 'Junior Frontend Developer', hourly_wage: 25}
         subject.working(40)
         expect(subject.cash).to eq 1000
+    end
+
+    it 'expect to raise error when trying to create an account without a job' do
+        subject.job = {}
+        expect{subject.create_account}.to raise_error(RuntimeError, 'You cannot create an account at us without a job sorry')
     end
     
 end
