@@ -1,46 +1,38 @@
-As a programmer <br>
-In order to work in a test driven way <br>
-I want to unit test my code <br>
+# ATM Simulator Instruction manual
+##### Created by Hanna and Greg
 
-As a User <br>
-In order to make a withdrawal <br>
-The ATM needs to have funds <br>
- 
- As a User               <br>
-In order to know if my withdrawal was successful or unsuccessful   <br>            
-I want to receive a message with my withdrawal details<br>
+## How to use this simulator
 
-As a ATM operator <br>          
-In order ensure that an Acccount holder can only withdraw funds that he has balance for  <br>         
-I want to allow a withdrawal only if there are sufficient funds in the account<br>
+1. You have to invoke person.rb in IRB with the command:
+```irb -r ./lib/person.rb ```
 
-As an ATM operator <br>
-In order for our customers to withdraw funds <br>
-I need to make sure that we only allow withdrawals if there are funds available <br>
+2. You have to create a new person class with your name:
+```hanna = Person.new(name:'Hanna Linnea Nyman')  => #<Person:0x00007f840f8b5390 @name="Hanna Linnea Nyman", @cash=0, @account=nil, @job={}> ```
 
-As a Customer<br>              
-In order to keep my funds secure <br>            
-I want a secure Pin code & an expiry date on my card that allows only me access to my funds
+3. You have to get a job:
+``` hanna.getting_a_job("Junior Developer", 25) => {:position=>"Junior Developer", :hourly_wage=>25}```
 
-As a ATM operator<br>
-In order to allow access active customers<br>
-I want to allow withdrawals from only active accounts<br>
+4. You can create an account only if you have a job:
+``` hanna.create_account => #<Account:0x00007f840f8ad348 @pin_code=2291, @balance=0, @account_status=:active, @exp_date="11/23", @owner=#<Person:0x00007f840f8b5390 @name="Hanna Linnea Nyman", @cash=0, @account=#<Account:0x00007f840f8ad348 ...>, @job={:position=>"Junior Developer", :hourly_wage=>25}>> ```
 
-As a customer<br>
-In order to manage my funds<br>
-I need to have a personal account<br>
-I want to allow withdrawals from only active accounts <br>
+5. You can only deposit money if you have cash. You can only get cash if you work some hours:
+``` hanna.working(40) => 1000```
 
-As a Bank Customer <br>
-In order to withdraw funds in even amounts <br>
-I want to recieve funds in 5, 10, & 20 dollar bills <br>
+6. If you have cash you can deposit it in your account. You cannot deposit more than you have:
+```hanna.deposit(500) => 500 ```
 
-As an ATM operator <br>
-In order to keep track of our customers <br>
-We want to assign each account to a separate person <br>
+7. In order to withdraw your money you first have to create an ATM:
+``` bankautomat = Atm.new => #<Atm:0x00007f840f8acba0 @funds=1000>```
 
-As a Person <br>
-In order to be able to use banking services to manage my funds <br>
-I would like to be able to create a bank account <br>
+8. In order to not get error message, you have to know your pin code:
+```hanna.account.pin_code => 2291 ```
 
+9. With that information you can withdraw money from the ATM. You need the ATM name, the amount and your pin:
+```hanna.withdraw(atm:bankautomat, amount:350, pin:2291) => 850 ```
 
+## DISCLAMERS
+
+* You need to have a job to create an account
+* You need to work to have cash to deposit. If you want to deposit more cash than you have it will be unsuccessful and you recieve an error message
+* If your account is inactive, the ATM has unsufficient funds, you are using wrong pin or withdraw more than your balance the withdrawal will be unsuccessful and you will recieve an error message
+* The money you withdrawn will increase your cash
